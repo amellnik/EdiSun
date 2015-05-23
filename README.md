@@ -1,7 +1,7 @@
 # EdiSun
-Mimic outdoor ambient light indoors with Phillips Hue bulbs, controlled by an Intel Edison.  (Ok, you could run this on anything that has the Julia language, but tiny computers are more fun!)
+Mimic outdoor ambient light indoors with <a href="http://www2.meethue.com/en-us/">Phillips Hue</a> bulbs, controlled by an <a href="https://software.intel.com/en-us/iot/hardware/edison">Intel Edison</a>.  (Ok, you could run this on anything that has the <a href="http://julialang.org/">Julia language</a>, but tiny computers are more fun!)
 
-It uses the <a href="http://openweathermap.org">OpenWeatherMap API</a> to get the local time, weather conditions and cloud cover for a given city, and then estimates the color temperature of ambient outdoor light using a simple model.  This color temperature can then be passed to a Hue bulb to match the outdoor conditions.  Note that the version of the Hue that we use only goes up to 6500 K and down to 2000 K, so values are sometimes clipped.  At night, the Hue goes to a default value, here 2000 K.  
+It uses the <a href="http://openweathermap.org">OpenWeatherMap API</a> to get the local time, weather conditions and cloud cover for a given city, and then estimates the color temperature of ambient outdoor light using a simple model.   This color temperature can then be passed to a Hue bulb to match the outdoor conditions.  Note that the version of the Hue that we use only goes up to 6500 K and down to 2000 K, so values are sometimes clipped.  At night, the Hue goes to a default value, here 2000 K.  
 
 Sample use: Update three bulbs to match the current conditions in Auckland, Portland and London. 
 
