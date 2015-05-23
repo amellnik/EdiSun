@@ -1,7 +1,7 @@
 # EdiSun
-Mimic outdoor ambient light indoors with Phillips Hue bulbs, controlled by an Intel Edison.  
+Mimic outdoor ambient light indoors with Phillips Hue bulbs, controlled by an Intel Edison.  (Ok, you could run this on anything that has the Julia language, but tiny computers are more fun!)
 
-Sample use: update three bulbs to match the current conditions in Aukland, Portland and London.  (Note that when this was run it was night in London, and the light defaults to the lowest-temperature value possible). 
+Sample use: update three bulbs to match the current conditions in Auckland, Portland and London. 
 
 ``` julia
 using Requests, DataFrames
@@ -12,19 +12,18 @@ updateAllLights(lightsTable)
 ```
 
 ```
-http://api.openweathermap.org/data/2.5/weather?q=Auckland
 Response(200 OK, 14 Headers, 471 Bytes in Body)
 Updating light 3 with the color temperature from city Auckland.  The temperature is 100 and the mirek is 500.
 [{"success":{"/lights/3/state/on":true}},{"success":{"/lights/3/state/ct":500}}]
 http://api.openweathermap.org/data/2.5/weather?q=Portland,OR,us
 Response(200 OK, 14 Headers, 486 Bytes in Body)
-Updating light 1 with the color temperature from city Portland,OR,us.  The temperature is 7647.549452191086 and the mirek is 153.
+Updating light 1 with the color temperature from city Portland,OR,us.  The temperature is 7691.200579502059 and the mirek is 153.
 [{"success":{"/lights/1/state/on":true}},{"success":{"/lights/1/state/ct":153}}]
-http://api.openweathermap.org/data/2.5/weather?q=London,uk
-Response(200 OK, 14 Headers, 466 Bytes in Body)
-Updating light 2 with the color temperature from city London,uk.  The temperature is 100 and the mirek is 500.
-[{"success":{"/lights/2/state/on":true}},{"success":{"/lights/2/state/ct":500}}]
+http://api.openweathermap.org/data/2.5/weather?q=Ithaca,NY,us
+Response(200 OK, 14 Headers, 480 Bytes in Body)
+Updating light 2 with the color temperature from city Ithaca,NY,us.  The temperature is 5521.6145690099365 and the mirek is 181.
+[{"success":{"/lights/2/state/on":true}},{"success":{"/lights/2/state/ct":181}}]
 ```
 
 <img src="http://gotfork.net/archive%20for%20web/three-cities.jpg">
-    
+Lights are for Auckland, Portland and Ithaca from left to right, taken around 2:45 PM Portland time.  Note that it was still nighttime in Auckland and the light shows it's lowest temperature value.  
