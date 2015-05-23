@@ -5,6 +5,7 @@ Sample use: update three bulbs to match the current conditions in Aukland, Portl
 
 ``` julia
 using Requests, DataFrames
+include("EdiSun.jl")
 HueHub = "http://192.168.98.25/api"
 lightsTable = DataFrame(ID = [3,1,2], City = ["Auckland", "Portland,OR,us" , "London,uk"], Name= ["Aukland","Portland", "London"])
 updateAllLights(lightsTable)
