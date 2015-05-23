@@ -12,8 +12,12 @@ function getTemp(sunrise, sunset, mult, defaultTemp)
     end 
 end
 
-function getWeather(zip)
-    res = get(string("http://api.openweathermap.org/data/2.5/weather?zip=", zip,",us"))
+
+function getWeather(city)
+    url = string("http://api.openweathermap.org/data/2.5/weather?q=", city)
+    println(url)
+    res = get(url)
+    println(res)
     sunrise = int(match(r"sunrise\":(\d+)", res.data).captures)
     sunset = int(match(r"sunset\":(\d+)", res.data).captures)
     
@@ -33,13 +37,13 @@ function getWeather(zip)
 end
     
 function getMultFromCode(code)
-    if floor(code/100)==2 #thunderstorm
+    if floor(code/100)==2
         return 1.8
-    elseif floor(code/100)==3 #drizzle
+    elseif floor(code/100)==3
         return 1.3
-    elseif floor(code/100)==5 #rain
+    elseif floor(code/100)==5
         return 1.5
-    elseif floor(code/100)==7 #haze, smoke, volcanic ash, etc
+    elseif floor(code/100)==7
         return 1.7
     end
     return nothing  
@@ -71,20 +75,25 @@ function setLight(whichLight, mirek)
     data= req).data)
 end
 
-function updateLightFromZip(whichLight, zip)
-    (sunrise, sunset, mult) = getWeather(zip)
-    ct = getTemp(sunrise, sunset, mult, nothing)
+function updateLightFromCity(whichLight, city)
+    (sunrise, sunset, mult) = getWeather(city)
+    ct = getTemp(sunrise, sunset, mult, 100)
     mirek = getMirek(ct)
-    println("Updating light ", whichLight, " with the color temperature from zip code ",
-    zip, ".  The temperature is ", ct, " and the mirek is ", mirek, ".")
+    println("Updating light ", whichLight, " with the color temperature from city ",
+    city, ".  The temperature is ", ct, " and the mirek is ", mirek, ".")
     setLight(whichLight, mirek)
+end
+
+
+function updateAllLights(lightsTable)
+    for i=1:nrow(lightsTable)
+            updateLightFromCity(lightsTable[i,:ID],lightsTable[i,:City])
+    end
 end
 
 function keepLightsUpdated(lightsTable)
     while true
-    for i=1:nrow(lightsTable)
-        updateLightFromZip(lightsTable[i,:ID],lightsTable[i,:zip])
-    end
+        updateAllLights(lightsTable)
     sleep(10)
     end
 end
