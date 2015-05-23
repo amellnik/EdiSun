@@ -30,5 +30,5 @@ Updating light 2 with the color temperature from city Ithaca,NY,us.  The tempera
 [{"success":{"/lights/2/state/on":true}},{"success":{"/lights/2/state/ct":181}}]
 ```
 
-<img src="http://gotfork.net/archive%20for%20web/three-cities.jpg">
-Lights are for Auckland, Portland and Ithaca from left to right, taken around 2:45 PM Portland time.  Note that it was still nighttime in Auckland and the getTemp function returns 100 K to force the light to show its lowest temperature value.  
+<img src="http://gotfork.net/archive%20for%20web/three-cities2.jpg">
+Lights are for Auckland, Portland and Ithaca from left to right, taken around 4:00 PM Portland time.  Note that it was just before dawn in Auckland  and the getTemp function returns 100 K to force the light to show its lowest temperature value.  
